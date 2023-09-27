@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "eef54b62-f227-4bab-bb21-3af12a06bb11",
+		"name": "Symfony auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "991349"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let token = pm.response.json().token;\r",
+							"\r",
+							"pm.environment.set('auth_token', token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "zzepish@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "fj392fj89031f90138jf31208j9f13j890f13",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://symfony-learning.loc:8080/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"symfony-learning",
+						"loc"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "login",
+						"type": "text",
+						"value": "Zzepish"
+					},
+					{
+						"key": "password",
+						"type": "text",
+						"value": "fj392fj89031f90138jf31208j9f13j890f13"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user[email]",
+							"value": "zzepish@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "user[password][first]",
+							"value": "fj392fj89031f90138jf31208j9f13j890f13",
+							"type": "text"
+						},
+						{
+							"key": "user[password][second]",
+							"value": "wadassaasassa",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "95FXsw77P0Xz3XPfYsjrjMwILCCZ41aobLJb9GJJXlQFU7Pb6mHBceNFE5sbQ8QZaeNLP4pU5e7JWjdRNSEQuA==",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://symfony-learning.loc:8080/api/auth/test",
+					"protocol": "http",
+					"host": [
+						"symfony-learning",
+						"loc"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"test"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
